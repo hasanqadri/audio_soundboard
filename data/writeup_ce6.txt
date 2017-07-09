@@ -1,0 +1,38 @@
+Class Exercise #6
+
+Name: Hasan Qadri 
+
+We increase harmoonics for the alerts because the dissonant
+tones sound harsher according to lecture notes and alerts are generally suppose to be disruptive, depending on
+how urgent it is. Thus we increase the harmonics depending on priority. We keep vibrato speed low because 
+for the alert I wanted to simulate a fading at the end of the alert, so we use utilize the pitch change at 
+the end this vibrato speed and having vibrato depth at max brings for that. For low priority I changed
+the frequency to a lower setting to give it a less intensive sound given that harmonics was already minimized
+in the middle priority alert. 
+
+Priority High alert:
+2,0.5,,0.5,,,,0.5,,,0.0049,1,0.115,0.21,,,-0.03,,,,,,,0.04,-0.005,1,0.0049,0.795,,-0.005,,,masterVolume
+Priority middle alert:
+2,0.5,,0.5,,,,0.5,,,0.0049,1,0.115,,,,-0.03,,,,,,,0.04,-0.005,1,0.0049,0.795,,-0.005,,,masterVolume
+Priority low alert:
+2,0.5,,0.5,,,,0.39,,,0.0049,1,0.115,,,,-0.03,,,,,,,0.04,-0.005,1,0.0049,0.795,,-0.005,,,masterVolume
+
+
+For ambient noise I kept harmonics low for the consonant tones that sound pleasant together and blend well
+together, as we discussed in class. I lowered the frequency to give a more mellow sound. I found that changing the vibrato
+around to be fairly disruptive, so I kept it the same as the alerts. I lowered the frequency and vibrato for the different
+priorities high to low. I also created a seamless loop for the three ambient sounds by deleting the silent part
+of all three audios and utilizing a fade in and fade out. 
+
+Priority high ambient:
+7,0.15,,0.5,,,,0.23,0.1,0.0149,0.0049,1,0.185,,,,-0.045,,,,,,,0.0049,-0.02,1,1,,,-1,,,masterVolume
+
+Priority middle ambient:
+2,0.2,,0.5,,,,0.325,0.1,0.0149,0.0049,1,0.105,,,,-0.045,,,,,,,0.0049,-0.02,1,1,,,-1,,,masterVolume
+
+Priortiy low ambient:
+2,0.2,,0.5,,,,0.25,0.1,0.0049,0.0049,1,0.105,,,,-0.045,,,,,,,0.0049,-0.02,1,1,,,-1,,,masterVolume
+
+In terms of processing implementation, I added ducking for when the alerts occur and 
+I have a playback glider for maximum user control of the application. 
+
