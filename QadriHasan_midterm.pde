@@ -33,20 +33,19 @@ ControlP5 p5;
 OnePoleFilter filter1;
 //end global variables
 
-
 //runs once when the Play button above is pressed
 void setup() {
   size(320, 240); //size(width, height) must be the first line in setup()
   ac = new AudioContext(); //AudioContext ac; is declared in helper_functions 
   p5 = new ControlP5(this);
+  setupServer();
   play();                  
 }
 
 void play() {
   setupContexts();
   setupGliders();
-   //<>//
-  filter1 = new OnePoleFilter(ac, 200.0);
+  filter1 = new OnePoleFilter(ac, 200.0); //<>//
   filter1.addInput(workingOut);
   filter1.addInput(walking);
   filter1.addInput(socializing);

@@ -78,8 +78,6 @@ public void PlaySocializing(int value) {
   socializing.start();
 }
 
-
-
 public void PlayHeartbeat(int value) {
   if (!heartbeatState) {
     heartbeat.start();

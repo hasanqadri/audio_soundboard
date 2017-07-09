@@ -31,5 +31,5 @@ void controlEvent(ControlEvent theEvent) {
       }
     }
   }
-  println("voicemail: " + voiceMail + " email: " + email + " phonecall: " + phoneCall + " textmessage: " + textMessage + " twitter: " + twitter);
+//println("voicemail: " + voiceMail + " email: " + email + " phonecall: " + phoneCall + " textmessage: " + textMessage + " twitter: " + twitter);
 }
