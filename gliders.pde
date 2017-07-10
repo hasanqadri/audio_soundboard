@@ -13,7 +13,7 @@ public void setupGliders() {
 
   rateValue = new Gain(ac, 1, gainSlide);
   rateValue.addInput(heartbeat);
-  gainSlide.setValue(.01);
+  gainSlide.setValue(1);
   //rateValue.addInput(music);
   //rateValue.addInput(music2);
   //rateValue.addInput(music3);

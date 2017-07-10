@@ -5,9 +5,8 @@ boolean phoneCall = false;
 boolean textMessage = false;
 boolean twitter = false;
 enum Context {WORKING, WALKING, SOCIALIZING, PRESENTING};
-Context context;
+Context context
 **/
-
 //Tweets take lowest priority of the four, but after that content summary decides order, where the more negative the higher its priority
 //Sonifying type, sender, message
 //If tweet, play twitter sound
@@ -22,6 +21,7 @@ Notification notif;
 
 
 public void engine(Notification note) {
+  /**
   notif = note;
   if (sp == null) {
     ttsExamplePlayback("Type " + notif.getType().toString()); 
@@ -50,6 +50,11 @@ public void engine(Notification note) {
         }
       }
   );
+**/
+
+
+
+
 
   if (context == Context.WORKING) {
     //We will go through all priority levels of 1 through 4

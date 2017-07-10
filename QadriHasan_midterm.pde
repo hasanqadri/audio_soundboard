@@ -52,6 +52,11 @@ void play() {
   filter1.addInput(socializing);
   filter1.addInput(presenting);
   filter1.addInput(heartbeat);
+  filter1.addInput(tweetSound);
+  filter1.addInput(phoneSound);
+  filter1.addInput(voiceSound);
+  filter1.addInput(emailSound);
+  filter1.addInput(textSound);
   
   g.addInput(filter1);
   ac.out.addInput(g);
