@@ -21,6 +21,50 @@ Notification notif;
 
 
 public void engine(Notification note) {
+  println(note.getType());
+  if (note.getType().toString().equals("Tweet")) {
+      playTweet();
+  } else if (note.getType().toString().equals("MissedCall")) {
+      playPhone();
+  } else if (note.getType().toString().equals("TextMessage")){
+      playText();
+  }  else if (note.getType().toString().equals("Email")){
+      playEmail();
+  } else if (note.getType().toString().equals("VoiceMail")) {
+      playVoice();
+  }
+  //contextPlay(note);
+}
+
+public void contextPlay(Notification note) {
+  if (context == Context.WORKING) {
+    //We will go through all priority levels of 1 through 4
+    
+  } else if (context == Context.WALKING) {
+    //We will go through priorities 2 thorugh 4
+    
+  } else if (context == Context.SOCIALIZING) {
+    //We will take priorities 3 and 4
+    
+  } else if (context == Context.PRESENTING) {
+    //We will only take priorities 4
+    if (note.getPriorityLevel() == 4) {
+        if (note.getType().toString().equals("Tweet")) {
+      playTweet();
+    } else if (note.getType().toString().equals("MissedCall")) {
+        playPhone();
+    } else if (note.getType().toString().equals("TextMessage")){
+        playText();
+    }  else if (note.getType().toString().equals("Email")){
+        playEmail();
+    } else if (note.getType().toString().equals("VoiceMail")) {
+        playVoice();
+    }
+    }
+  }
+}
+  
+    
   /**
   notif = note;
   if (sp == null) {
@@ -51,22 +95,3 @@ public void engine(Notification note) {
       }
   );
 **/
-
-
-
-
-
-  if (context == Context.WORKING) {
-    //We will go through all priority levels of 1 through 4
-    
-  } else if (context == Context.WALKING) {
-    //We will go through priorities 2 thorugh 4
-    
-  } else if (context == Context.SOCIALIZING) {
-    //We will take priorities 3 and 4
-    
-  } else if (context == Context.PRESENTING) {
-    //We will only take priorities 4
-    
-  }
-}

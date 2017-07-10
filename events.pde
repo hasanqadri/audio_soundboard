@@ -45,7 +45,6 @@ public void setupEvents() {
   tweetSound = getSamplePlayer("tweetSound.wav");
   tweetSound.setToLoopStart();
   tweetSound.pause(true);
-
   
   voiceSound = getSamplePlayer("voiceSound.wav");
   voiceSound.setToLoopStart();
@@ -64,22 +63,28 @@ public void setupEvents() {
   textSound.pause(true);
 }
 
-public void PlayTweet(int value) {
+public void playTweet() {
+  
+  tweetSound.setToLoopStart();
   tweetSound.start();
 }
 
-public void PlayVoice(int value) {
+public void playVoice() {
+  voiceSound.setToLoopStart();
   voiceSound.start();
 }
 
-public void PlayPhone(int value) {
+public void playPhone() {
+  phoneSound.setToLoopStart();
   phoneSound.start();
 }
 
-public void PlayEmail(int value) {
+public void playEmail() {
+  emailSound.setToLoopStart();
   emailSound.start();
 }
 
-public void PlayText(int value) {
+public void playText() {
+  textSound.setToLoopStart();
   textSound.start();
 }
