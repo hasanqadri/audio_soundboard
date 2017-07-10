@@ -19,7 +19,7 @@ void setupServer() {
   server.addListener(notifEvent);
   
   //loading the event stream, which also starts the timer serving events
-  server.loadEventStream(eventDataJSON1);
+  server.loadEventStream(eventDataJSON2);
   currentlySelected = 1;
   //END NotificationServer setup
   
@@ -78,6 +78,7 @@ class NotifEvents implements NotificationListener {
     }
     debugOutput += notification.getSender() + ", " + notification.getMessage();
     //println(debugOutput);
+    
     engine(notification);
       
     

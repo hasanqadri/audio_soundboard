@@ -15,8 +15,12 @@ Context context;
 //If voice mail, play "you have one new voice message"
 // email, then email jingle
 //TTS for sender and message
-
+//String exampleSpeech = "Text to speech is okay, I guess.";
+//ttsExamplePlayback(exampleSpeech); //see ttsExamplePlayback below for usage
+boolean playing = true;
+Notification note;
 public void engine(Notification notif) {
+  ttsExamplePlayback("Type " + notif.getType().toString());
   
   if (context == Context.WORKING) {
     //We will go through all priority levels of 1 through 4

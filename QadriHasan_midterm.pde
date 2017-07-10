@@ -21,7 +21,7 @@ Context context;
 
 SamplePlayer heartbeat;
 
-Bead buttonListenerBead;
+Bead ttsListener;;
 Bead buttonListenerBead2;
 Bead buttonListenerBead3;
 Bead musicListenerBead;
@@ -56,9 +56,9 @@ void play() {
   ac.out.addInput(g);
   ui();
   ac.start();
+  setupTTS();
 }
-
-
+  
 void draw() {
   background(20, 100,100);  //fills the canvas with black (0) each frame
 }
