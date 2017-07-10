@@ -1,7 +1,7 @@
 [
   {
     "type": "MissedCall",
-    "timestamp": 1000,
+    "timestamp": 7000,
     "sender": "(404) 555-1234",
     "priority": 1
   },

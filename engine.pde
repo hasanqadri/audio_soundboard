@@ -18,21 +18,49 @@ Context context
 //ttsExamplePlayback(exampleSpeech); //see ttsExamplePlayback below for usage
 boolean playing = true;
 Notification notif;
-
+SamplePlayer thisSound;
 
 public void engine(Notification note) {
   println(note.getType());
-  if (note.getType().toString().equals("Tweet")) {
-      playTweet();
-  } else if (note.getType().toString().equals("MissedCall")) {
-      playPhone();
-  } else if (note.getType().toString().equals("TextMessage")){
-      playText();
-  }  else if (note.getType().toString().equals("Email")){
-      playEmail();
-  } else if (note.getType().toString().equals("VoiceMail")) {
-      playVoice();
-  }
+   
+  notif = note;
+  if (thisSound == null) {
+    thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+    thisSound.setToLoopStart();
+    thisSound.pause(true);
+    filter1.addInput(thisSound);
+    thisSound.start();  
+    
+    thisSound.setEndListener(
+      buttonListenerBead2 = new Bead() {
+        public void messageReceived(Bead mess) {
+          println("a sound has ended");
+          thisSound.pause(true);
+          println("a sound has ended2");
+
+          this.pause(true);
+          println("a sound has ended3");
+
+          ttsExamplePlayback(notif.getSender());
+          sp.setEndListener(
+            buttonListenerBead3 = new Bead() {
+            public void messageReceived(Bead mess) {
+              sp.pause(true);
+              this.pause(true);
+              if (notif.getMessage() != null) {
+                ttsExamplePlayback(notif.getMessage());    
+              } 
+          }  
+          }
+        ); 
+          println("a sound has ended4");
+        }
+      }
+    );
+  } 
+    
+    
+  
   //contextPlay(note);
 }
 
@@ -45,21 +73,21 @@ public void contextPlay(Notification note) {
     
   } else if (context == Context.SOCIALIZING) {
     //We will take priorities 3 and 4
-    
+    if (note.getPriorityLevel() == 4 || note.getPriorityLevel() == 3 ) {
+      thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+      thisSound.setToLoopStart();
+      thisSound.pause(true);
+      filter1.addInput(thisSound);
+      thisSound.start();
+    }
   } else if (context == Context.PRESENTING) {
     //We will only take priorities 4
     if (note.getPriorityLevel() == 4) {
-        if (note.getType().toString().equals("Tweet")) {
-      playTweet();
-    } else if (note.getType().toString().equals("MissedCall")) {
-        playPhone();
-    } else if (note.getType().toString().equals("TextMessage")){
-        playText();
-    }  else if (note.getType().toString().equals("Email")){
-        playEmail();
-    } else if (note.getType().toString().equals("VoiceMail")) {
-        playVoice();
-    }
+      thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+      thisSound.setToLoopStart();
+      thisSound.pause(true);
+      filter1.addInput(thisSound);
+      thisSound.start();
     }
   }
 }
@@ -94,4 +122,16 @@ public void contextPlay(Notification note) {
         }
       }
   );
+  
+   if (note.getType().toString().equals("Tweet")) {
+      playTweet();
+  } else if (note.getType().toString().equals("MissedCall")) {
+      playPhone();
+  } else if (note.getType().toString().equals("TextMessage")){
+      playText();
+  }  else if (note.getType().toString().equals("Email")){
+      playEmail();
+  } else if (note.getType().toString().equals("VoiceMail")) {
+      playVoice();
+  }
 **/

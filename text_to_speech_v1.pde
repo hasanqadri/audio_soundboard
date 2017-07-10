@@ -37,7 +37,7 @@ void ttsExamplePlayback(String inputSpeech) {
   sp = getSamplePlayer(ttsFilePath, true); 
   //true means it will delete itself when it is finished playing
   //you may or may not want this behavior!
-  ac.out.addInput(sp);
+  filter1.addInput(sp);
   sp.setToLoopStart();
   sp.start();
 

@@ -44,7 +44,7 @@ void setup() {
 
 void play() {
   setupContexts();
-  setupEvents();
+  //setupEvents();
   setupGliders();
   filter1 = new OnePoleFilter(ac, 200.0); //<>//
   filter1.addInput(workingOut);
@@ -52,17 +52,18 @@ void play() {
   filter1.addInput(socializing);
   filter1.addInput(presenting);
   filter1.addInput(heartbeat);
-  filter1.addInput(tweetSound);
+  /**filter1.addInput(tweetSound);
   filter1.addInput(phoneSound);
   filter1.addInput(voiceSound);
   filter1.addInput(emailSound);
   filter1.addInput(textSound);
-  
+  **/
+    setupTTS();
+
   g.addInput(filter1);
   ac.out.addInput(g);
   ui();
   ac.start();
-  setupTTS();
 }
   
 void draw() {
