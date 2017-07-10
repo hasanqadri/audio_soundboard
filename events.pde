@@ -5,6 +5,12 @@ boolean phoneCall = false;
 boolean textMessage = false;
 boolean twitter = false;
 
+SamplePlayer tweetSound;
+SamplePlayer emailSound;
+SamplePlayer textSound;
+SamplePlayer voiceSound;
+SamplePlayer phoneSound;
+
 void controlEvent(ControlEvent theEvent) {
   if (theEvent.isFrom(checkbox)) {
     print("got an event from "+checkbox.getName()+"\t\n");
@@ -32,4 +38,52 @@ void controlEvent(ControlEvent theEvent) {
     }
   }
 //println("voicemail: " + voiceMail + " email: " + email + " phonecall: " + phoneCall + " textmessage: " + textMessage + " twitter: " + twitter);
+}
+
+public void setupEvents() {
+
+  tweetSound = getSamplePlayer("tweetSound.wav");
+  tweetSound.setToLoopStart();
+  tweetSound.pause(true);
+  
+  voiceSound = getSamplePlayer("voicetweetSound.wav");
+  voiceSound.setToLoopStart();
+  voiceSound.pause(true);
+  
+  phoneSound = getSamplePlayer("phoneSound.wav");
+  phoneSound.setToLoopStart();
+  phoneSound.pause(true);
+  
+  emailSound = getSamplePlayer("emailSound.wav");
+  emailSound.setToLoopStart();
+  emailSound.pause(true);
+  
+  textSound = getSamplePlayer("textSound.wav");
+  textSound.setToLoopStart();
+  textSound.pause(true);
+}
+
+
+public void PlayTweet() {
+  tweetSound.start();
+}
+
+
+public void PlayVoice() {
+  voiceSound.start();
+}
+
+
+public void PlayPhone() {
+  phoneSound.start();
+}
+
+
+public void PlayEmail() {
+  emailSound.start();
+}
+
+
+public void PlayText() {
+  textSound.start();
 }

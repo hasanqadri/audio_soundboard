@@ -44,6 +44,7 @@ void setup() {
 
 void play() {
   setupContexts();
+  setupEvents();
   setupGliders();
   filter1 = new OnePoleFilter(ac, 200.0); //<>//
   filter1.addInput(workingOut);

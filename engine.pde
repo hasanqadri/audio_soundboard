@@ -18,10 +18,39 @@ Context context;
 //String exampleSpeech = "Text to speech is okay, I guess.";
 //ttsExamplePlayback(exampleSpeech); //see ttsExamplePlayback below for usage
 boolean playing = true;
-Notification note;
-public void engine(Notification notif) {
-  ttsExamplePlayback("Type " + notif.getType().toString());
+Notification notif;
+
+
+public void engine(Notification note) {
+  notif = note;
+  if (sp == null) {
+    ttsExamplePlayback("Type " + notif.getType().toString()); 
+  } else {
+    sp.setEndListener(
+        buttonListenerBead3 = new Bead() {
+          public void messageReceived(Bead mess) {
+            println("a sound has ended");
+            sp.pause(true);
+            this.pause(true);
+            ttsExamplePlayback("Type " + notif.getType().toString()); 
   
+          }
+        }
+    );
+  }
+  
+  sp.setEndListener(
+      buttonListenerBead2 = new Bead() {
+        public void messageReceived(Bead mess) {
+          println("a sound has ended");
+          sp.pause(true);
+          this.pause(true);
+          ttsExamplePlayback("Sender " + notif.getSender());
+
+        }
+      }
+  );
+
   if (context == Context.WORKING) {
     //We will go through all priority levels of 1 through 4
     
