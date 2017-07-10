@@ -22,7 +22,7 @@ SamplePlayer thisSound;
 
 public void engine(Notification note) {
   println(note.getType());
-   
+   /**
   notif = note;
   if (thisSound == null) {
     thisSound = getSamplePlayer(note.getType().toString() + ".wav");
@@ -60,7 +60,7 @@ public void engine(Notification note) {
   } 
     
     
-  
+  **/
   //contextPlay(note);
 }
 
