@@ -23,10 +23,25 @@ PriorityQueue<Notification> pq = new PriorityQueue<Notification>();
 
 public void engineHeart() {
       println("engine heart began");
-      contextPlay(pq.poll());
+      Notification notice = pq.poll();
+      String noti = notice.getType().toString();
+      if ((noti.equals("Tweet") && twitter)
+        || (noti.equals("MissedCall") && phoneCall)
+          || (noti.equals("VoiceMail") && voiceMail)
+            || (noti.equals("Email") && email)
+              ||(noti.equals("TextMessage") && textMessage)) {
+                contextPlay(pq.poll());
+              }
 }
 
+/**
 
+boolean voiceMail = false;
+boolean email = false;
+boolean phoneCall = false;
+boolean textMessage = false;
+boolean twitter = false;
+**/
 
 public void engine() {
      println("engine began");
