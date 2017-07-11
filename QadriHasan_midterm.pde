@@ -1,5 +1,5 @@
 //Hasan Qadri, hqadri6 //<>//
-
+import java.util.PriorityQueue;
 import controlP5.*;
 import beads.*;
 import org.jaudiolibs.beads.*;
@@ -24,9 +24,9 @@ SamplePlayer heartbeat;
 Bead ttsListener;
 Bead buttonListenerBead2;
 Bead buttonListenerBead3;
-Bead musicListenerBead;
-Bead musicListenerBead2;
-Bead musicListenerBead3;
+Bead buttonListenerBead4;
+Bead buttonListenerBead5;
+Bead buttonListenerBead6;
 
 ControlP5 p5;
 UGen mod;
@@ -70,8 +70,8 @@ void play() {
   filter1.addInput(textSound);
   **/
   setupTTS();
-  
-mod = createHeartbeat();
+  //engine();
+  mod = createHeartbeat();
   filter1.addInput(mod);
   g.addInput(filter1);
   ac.out.addInput(g);

@@ -19,79 +19,105 @@ Context context
 boolean playing = true;
 Notification notif;
 SamplePlayer thisSound;
+PriorityQueue<Notification> pq = new PriorityQueue<Notification>();
 
-public void engine(Notification note) {
-  println(note.getType());
-   /**
-  notif = note;
-  if (thisSound == null) {
-    thisSound = getSamplePlayer(note.getType().toString() + ".wav");
-    thisSound.setToLoopStart();
-    thisSound.pause(true);
-    filter1.addInput(thisSound);
-    thisSound.start();  
-    
-    thisSound.setEndListener(
-      buttonListenerBead2 = new Bead() {
-        public void messageReceived(Bead mess) {
-          println("a sound has ended");
-          thisSound.pause(true);
-          println("a sound has ended2");
+public void engineHeart() {
+      println("engine heart began");
+      contextPlay(pq.poll());
+}
 
-          this.pause(true);
-          println("a sound has ended3");
 
-          ttsExamplePlayback(notif.getSender());
-          sp.setEndListener(
-            buttonListenerBead3 = new Bead() {
-            public void messageReceived(Bead mess) {
-              sp.pause(true);
-              this.pause(true);
-              if (notif.getMessage() != null) {
-                ttsExamplePlayback(notif.getMessage());    
-              } 
-          }  
+
+public void engine() {
+     println("engine began");
+     thisSound.setEndListener(
+        buttonListenerBead4 = new Bead() {
+          public void messageReceived(Bead mess) {
+            println("listened to type");
+
+            sp.setEndListener(
+              buttonListenerBead5 = new Bead() {
+              public void messageReceived(Bead mess) {
+                println("listened to sender and message");
+                //contextPlay(pq.poll());
+              }  
+            }
+          ); 
           }
-        ); 
-          println("a sound has ended4");
         }
-      }
-    );
-  } 
-    
-    
-  **/
-  //contextPlay(note);
+      );
 }
 
 public void contextPlay(Notification note) {
+  notif = note;
+  int pLevel = note.getPriorityLevel(); 
+  println("contextplay began: " + note.getType());
+  thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+  //sp = getSamplePlayer(note.getType().toString() + ".wav"); 
+
   if (context == Context.WORKING) {
     //We will go through all priority levels of 1 through 4
-    
+    playSounds(note);
   } else if (context == Context.WALKING) {
     //We will go through priorities 2 thorugh 4
-    
+    if (pLevel == 4 || pLevel == 3 || pLevel == 2 ) {
+      //We will go through all priority levels of 1 through 4
+      playSounds(note);
+    }
   } else if (context == Context.SOCIALIZING) {
     //We will take priorities 3 and 4
-    if (note.getPriorityLevel() == 4 || note.getPriorityLevel() == 3 ) {
-      thisSound = getSamplePlayer(note.getType().toString() + ".wav");
-      thisSound.setToLoopStart();
-      thisSound.pause(true);
-      filter1.addInput(thisSound);
-      thisSound.start();
+    if (pLevel == 4 || pLevel == 3 ) {
+     //We will go through all priority levels of 1 through 4
+     playSounds(note);
     }
   } else if (context == Context.PRESENTING) {
     //We will only take priorities 4
-    if (note.getPriorityLevel() == 4) {
-      thisSound = getSamplePlayer(note.getType().toString() + ".wav");
-      thisSound.setToLoopStart();
-      thisSound.pause(true);
-      filter1.addInput(thisSound);
-      thisSound.start();
+    if (pLevel == 4) {
+       //We will go through all priority levels of 1 through 4
+       playSounds(note);
     }
   }
 }
   
+  
+  
+  public void playSounds(Notification note) {
+     notif = note;
+     thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+      thisSound.setToLoopStart();
+      thisSound.pause(true);
+      filter1.addInput(thisSound);
+      thisSound.start();
+       
+      thisSound.setEndListener(
+        buttonListenerBead2 = new Bead() {
+          public void messageReceived(Bead mess) {
+            println("a sound has ended");
+            thisSound.pause(true);
+            println("a sound has ended2");
+  
+            this.pause(true);
+            println("a sound has ended3");
+  
+            ttsExamplePlayback(notif.getSender());
+            sp.setEndListener(
+              buttonListenerBead3 = new Bead() {
+              public void messageReceived(Bead mess) {
+                sp.pause(true);
+                this.pause(true);
+                if (!notif.getMessage().equals("")) {
+                  ttsExamplePlayback(notif.getMessage());   
+                  println("a sound has ended5");
+                } 
+            }  
+            }
+          ); 
+            println("a sound has ended4");
+          }
+        }
+      ); 
+    
+  }
     
   /**
   notif = note;
@@ -135,3 +161,87 @@ public void contextPlay(Notification note) {
       playVoice();
   }
 **/
+
+/**
+  println(note.getType());
+   /**
+  notif = note;
+  if (thisSound == null) {
+    thisSound = getSamplePlayer(note.getType().toString() + ".wav");
+    thisSound.setToLoopStart();
+    thisSound.pause(true);
+    filter1.addInput(thisSound);
+    thisSound.start();  
+    
+    thisSound.setEndListener(
+      buttonListenerBead2 = new Bead() {
+        public void messageReceived(Bead mess) {
+          println("a sound has ended");
+          thisSound.pause(true);
+          println("a sound has ended2");
+
+          this.pause(true);
+          println("a sound has ended3");
+
+          ttsExamplePlayback(notif.getSender());
+          sp.setEndListener(
+            buttonListenerBead3 = new Bead() {
+            public void messageReceived(Bead mess) {
+              sp.pause(true);
+              this.pause(true);
+              if (notif.getMessage() != null) {
+                ttsExamplePlayback(notif.getMessage());    
+              } 
+          }  
+          }
+        ); 
+          println("a sound has ended4");
+        }
+      }
+    );
+  }   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   else {
+      thisSound.setEndListener(
+        buttonListenerBead2 = new Bead() {
+          public void messageReceived(Bead mess) {
+            println("a sound has ended");
+            thisSound.pause(true);
+            println("a sound has ended2");
+  
+            this.pause(true);
+            println("a sound has ended3");
+  
+            ttsExamplePlayback(pq.poll().getSender());
+            sp.setEndListener(
+              buttonListenerBead3 = new Bead() {
+              public void messageReceived(Bead mess) {
+                sp.pause(true);
+                this.pause(true);
+                if (notif.getMessage() != null) {
+                  ttsExamplePlayback(notif.getMessage());    
+                } 
+            }  
+            }
+          ); 
+            println("a sound has ended4");
+          }
+        }
+      );
+    }
+  **/

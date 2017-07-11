@@ -1,6 +1,6 @@
 enum NotificationType { Tweet, Email, TextMessage, MissedCall, VoiceMail }
 //Notification obj
-class Notification {
+class Notification implements Comparable<Notification> {
    
   int timestamp;
   NotificationType type; //Tweet, Email, TextMessage, MissedCall, VoiceMail
@@ -75,6 +75,18 @@ class Notification {
   public int getContentSummary() { return contentSummary; }
   public int getRetweets() { return retweets; }
   public int getFavorites() { return favorites; }
+  
+
+  public int compareTo(Notification note) {
+    if (note.getPriorityLevel() < ((Notification)this).getPriorityLevel()) {
+      return 1;
+    } else if(note.getPriorityLevel() > ((Notification)this).getPriorityLevel()) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
+  
   
   public String toString() {
       String output = getType().toString() + ": ";

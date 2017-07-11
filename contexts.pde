@@ -1,7 +1,6 @@
 //Contexts
 boolean heartbeatState = false;
 
-
 public void synthesizeHeartbeat() {
   float baseFrequency = 200.0f;
   int sineCount = 10;
@@ -18,17 +17,17 @@ public void synthesizeHeartbeat() {
 
 public void setupContexts() {
   
-  workingOut = getSamplePlayer("workingout.wav");
+  workingOut = getSamplePlayer("workingout3.wav");
   workingOut.setToLoopStart();
   workingOut.pause(true);
   workingOut.setLoopType(SamplePlayer.LoopType.LOOP_FORWARDS);  
   
-  walking = getSamplePlayer("walking.wav");
+  walking = getSamplePlayer("walking4.wav");
   walking.setToLoopStart();
   walking.pause(true);
   walking.setLoopType(SamplePlayer.LoopType.LOOP_FORWARDS);  
   
-  socializing = getSamplePlayer("socializing.wav");
+  socializing = getSamplePlayer("socializing2.wav");
   socializing.setToLoopStart();
   socializing.pause(true);
   socializing.setLoopType(SamplePlayer.LoopType.LOOP_FORWARDS);  
@@ -171,11 +170,11 @@ public void PlayHeartbeat(int value) {
 public UGen createHeartbeat() {
 
 // create the modulator
-  modulatorFrequency = new Glide(ac, 5, 7);
+  modulatorFrequency = new Glide(ac, 1, 20);
   modulator = new WavePlayer(ac, modulatorFrequency, Buffer.SINE);
 
 // create the carrier
-  carrierFrequency = new Glide(ac, 5, 7);
+  carrierFrequency = new Glide(ac, 1, 20);
   carrier = new WavePlayer(ac, carrierFrequency,Buffer.SINE);
 // a custom function for Ring Modulation
 // Remember, Ring Modulation = Modulator[t] * Carrier[t]
