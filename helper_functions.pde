@@ -11,7 +11,7 @@ SamplePlayer getSamplePlayer(String fileName, Boolean killOnEnd) {
     player = new SamplePlayer(ac, getSample(fileName));
     player.setKillOnEnd(killOnEnd);
     player.setName(fileName);
-    println(player);
+    //println(player);
 
   }
   catch(Exception e) {

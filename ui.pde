@@ -2,28 +2,28 @@ CheckBox checkbox;
   
 public void ui() {
     
-  p5.addButton("PlayWorking")
+  p5.addButton("Working")
     .setPosition(130,10)
     .setSize(40,40)
     .activateBy(ControlP5.RELEASE);
   
-  p5.addButton("PlayWalking")
+  p5.addButton("Walking")
     .setPosition(130,55)
     .setSize(40,40)
     .activateBy(ControlP5.RELEASE);
    
-  p5.addButton("PlaySocializing")
+  p5.addButton("Socializing")
     .setPosition(130, 100)
     .setSize(40,40)
     .activateBy(ControlP5.RELEASE);
   
-  p5.addButton("PlayPresenting")
+  p5.addButton("Presenting")
     .setPosition(130,145)
     .setSize(40,40)
     .activateBy(ControlP5.RELEASE);
   
     
-  p5.addButton("PlayHeartbeat")
+  p5.addButton("Heartbeat")
     .setPosition(240,10)
     .setSize(40,40)
     .activateBy(ControlP5.RELEASE);

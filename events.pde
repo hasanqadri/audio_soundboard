@@ -24,67 +24,18 @@ void controlEvent(ControlEvent theEvent) {
         voiceMail = val;
       }
       if (i == 1) {
-        email = val;
+        twitter = val;
       }
       if (i == 2) {
-        phoneCall = val;
+        email = val;
       }
       if (i == 3) {
-        textMessage = val;
+       phoneCall = val;
       }
       if (i == 4) {
-        twitter = val;
+        textMessage = val;
       }
     }
   }
 //println("voicemail: " + voiceMail + " email: " + email + " phonecall: " + phoneCall + " textmessage: " + textMessage + " twitter: " + twitter);
-}
-
-public void setupEvents() {
-
-  tweetSound = getSamplePlayer("tweetSound.wav");
-  tweetSound.setToLoopStart();
-  tweetSound.pause(true);
-  
-  voiceSound = getSamplePlayer("voiceSound.wav");
-  voiceSound.setToLoopStart();
-  voiceSound.pause(true);
-  
-  phoneSound = getSamplePlayer("phoneSound.wav");
-  phoneSound.setToLoopStart();
-  phoneSound.pause(true);
-  
-  emailSound = getSamplePlayer("emailSound.wav");
-  emailSound.setToLoopStart();
-  emailSound.pause(true);
-  
-  textSound = getSamplePlayer("textSound.wav");
-  textSound.setToLoopStart();
-  textSound.pause(true);
-}
-
-public void playTweet() {
-  
-  tweetSound.setToLoopStart();
-  tweetSound.start();
-}
-
-public void playVoice() {
-  voiceSound.setToLoopStart();
-  voiceSound.start();
-}
-
-public void playPhone() {
-  phoneSound.setToLoopStart();
-  phoneSound.start();
-}
-
-public void playEmail() {
-  emailSound.setToLoopStart();
-  emailSound.start();
-}
-
-public void playText() {
-  textSound.setToLoopStart();
-  textSound.start();
 }

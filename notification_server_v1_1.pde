@@ -8,43 +8,8 @@ NotificationServer server;
 ArrayList<Notification> notifications;
 int start = 0;
 NotifEvents notifEvent;
-
-void setupServer() {
-  
-  //START NotificationServer setup
-  server = new NotificationServer();
-  
-  //instantiating a custom class (seen below) and registering it as a listener to the server
-  notifEvent = new NotifEvents();
-  server.addListener(notifEvent);
-  
-  //loading the event stream, which also starts the timer serving events
-  //server.loadEventStream(eventDataJSON2);
-  currentlySelected = 1;
-  //END NotificationServer setup
-  
-}
-
-void keyPressed() {
-  //example of stopping the current event stream and loading the second one
-  if (key == RETURN || key == ENTER) {
-    if (currentlySelected == 1) {
-      server.stopEventStream(); //always call this before loading a new stream
-      server.loadEventStream(eventDataJSON2);
-      println("**** New event stream loaded: " + eventDataJSON2 + " ****");
-    } else if (currentlySelected == 2) {
-      server.stopEventStream(); //always call this before loading a new stream
-      server.loadEventStream(eventDataJSON3);
-      println("**** New event stream loaded: " + eventDataJSON3 + " ****");
-    } else if (currentlySelected == 3) {
-      server.stopEventStream(); //always call this before loading a new stream
-      server.loadEventStream(eventDataJSON1);
-      println("**** New event stream loaded: " + eventDataJSON1 + " ****");
-    }
-  }
-    
-}
-
+Notification curr = null;
+Notification prev = null; //<>//
 
 //in your own custom class, you will implement the NotificationListener interface 
 //(with the notificationReceived() method) to receive Notification events as they come in
@@ -52,12 +17,9 @@ class NotifEvents implements NotificationListener {
   
   public NotifEvents () {
   }
-  
+ 
   //this method must be implemented to receive notifications
-  public void notificationReceived(Notification notification) { 
-    //println("<NotifEvents> " + notification.getType().toString() + " notification received at " 
-    //+ Integer.toString(notification.getTimestamp()) + "millis.");
-    
+  public void notificationReceived(Notification notification) {  //<>//
     String debugOutput = "";
     switch (notification.getType()) {
       case Tweet:
@@ -78,16 +40,25 @@ class NotifEvents implements NotificationListener {
     }
     debugOutput += notification.getSender() + ", " + notification.getMessage();
     //println(debugOutput);
-      if (start == 0) {
-        pq.add(notification);
-        engineHeart();
-        start++;
-      }//else {
-//pq.add(notification);
-      //  engine();
-     // }
-    
-   //You can experiment with the timing by altering the timestamp values (in ms) in the exampleData.json file
-    //(located in the data directory)
+    start++;
+    noteSamplePlayer(notification);
+    pq.add(notification); //<>//
+    engineHeart();
+
+  }
+  
+    public void noteSamplePlayer(Notification note) {
+      //Type
+      note.setSamplePlayer(getSamplePlayer(note.getType().toString() + ".wav"));
+      note.getSamplePlayerType().setToLoopStart();
+      note.getSamplePlayerType().pause(true);
+      //Message
+      if (!note.getMessage().equals("")) {
+        String ttsFilePath = ttsMaker.createTTSWavFile(note.getMessage());
+        note.setSamplePlayerMsg(getSamplePlayer(ttsFilePath, true)); 
+        note.getSamplePlayerMessage().setToLoopStart();
+        note.getSamplePlayerMessage().pause(true);
+      }
+
   }
 }

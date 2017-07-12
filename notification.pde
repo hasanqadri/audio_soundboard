@@ -10,6 +10,9 @@ class Notification implements Comparable<Notification> {
   int contentSummary; //NOT used by Tweet or MissedCall
   int retweets; //used by Tweet only
   int favorites; //used by Tweet only
+  SamplePlayer samplePlayer;
+  SamplePlayer samplePlayerMsg;
+  SamplePlayer samplePlayerSender;
   
   public Notification(JSONObject json) {
     this.timestamp = json.getInt("timestamp");
@@ -57,6 +60,7 @@ class Notification implements Comparable<Notification> {
     else {
       this.retweets = json.getInt("retweets");      
     }
+
     
     if (json.isNull("favorites")) {
       this.favorites = 0;
@@ -64,7 +68,7 @@ class Notification implements Comparable<Notification> {
     else {
       this.favorites = json.getInt("favorites");      
     }
-                             
+    this.samplePlayerMsg = null;                         
   }
   
   public int getTimestamp() { return timestamp; }
@@ -75,18 +79,30 @@ class Notification implements Comparable<Notification> {
   public int getContentSummary() { return contentSummary; }
   public int getRetweets() { return retweets; }
   public int getFavorites() { return favorites; }
-  
+  public SamplePlayer getSamplePlayerType() { return samplePlayer; }
+  public SamplePlayer getSamplePlayerMessage() { return samplePlayerMsg; }
+  public SamplePlayer getSamplePlayerSender() { return samplePlayerSender; }
 
+  @Override
   public int compareTo(Notification note) {
-    if (note.getPriorityLevel() < ((Notification)this).getPriorityLevel()) {
+    if (note.getPriorityLevel() > ((Notification)this).getPriorityLevel()) {
       return 1;
-    } else if(note.getPriorityLevel() > ((Notification)this).getPriorityLevel()) {
+    } else if(note.getPriorityLevel() < ((Notification)this).getPriorityLevel()) {
       return -1;
     } else {
       return 0;
     }
   }
   
+  public void setSamplePlayer(SamplePlayer sample) {
+    this.samplePlayer = sample;
+  }
+    public void setSamplePlayerMsg(SamplePlayer sample) {
+      this.samplePlayerMsg = sample;
+  }
+    public void setSamplePlayerSender(SamplePlayer sample) {
+      this.samplePlayerSender = sample;
+  }
   
   public String toString() {
       String output = getType().toString() + ": ";

@@ -30,7 +30,7 @@
     "sender": "GTENS",
     "message": "This is a test of the emergency alert network",
     "priority": 4,
-    "contentSummary": 2
+    "contentSummary": 1
   },
   {
     "type": "MissedCall",
@@ -130,7 +130,7 @@
     "type": "VoiceMail",
     "timestamp": 53000,
     "sender": "(404) 555-5555",
-    "message": "Don't forget to vote on November 8th. I endorse this message",
+    "message": "Don't forget to vote on November I endorse this message",
     "priority": 3,
     "contentSummary": 1
   }
